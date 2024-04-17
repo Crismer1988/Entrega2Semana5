@@ -3,7 +3,7 @@
 //Fundamentos de programacion - Subgrupo 5
 
 import java.io.*;
-        import java.util.*;
+import java.util.*;
 
 public class GenerateInfoFiles {
 
