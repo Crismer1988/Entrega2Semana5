@@ -1,0 +1,10 @@
+CE;1563958637;James;Taylor
+CE;1088297519;William;Walker
+CC;1103392448;James;Moore
+CC;1563212497;Ava;Johnson
+CC;1723163752;Mia;Lewis
+TI;1448433526;James;Johnson
+TI;1804031929;William;Clark
+CC;1635288308;John;Lee
+CC;1595954381;James;Smith
+CC;1712745929;Olivia;Johnson
