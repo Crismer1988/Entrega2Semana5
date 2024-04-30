@@ -7,8 +7,8 @@ import java.util.*;
 
 public class GenerateInfoFiles {
 
-    //GeneratedProducts needs to be initailized and ready to execute from here.
-    private static Set<String> generatedProducts = new HashSet<>();
+    //GeneratedProducts needs to be initialized and ready to execute from here.
+    private static final Set<String> generatedProducts = new HashSet<>();
     public static void main(String[] args) {
         try {
             createSalesManInfoFile(10);
@@ -40,8 +40,8 @@ public class GenerateInfoFiles {
                 String productName;
                 do {
                     productName = generateRandomProductName();
-                } while (generatedProducts.contains(productName)); // Verificar si el producto ya fue generado
-                generatedProducts.add(productName); // Agregar el producto generado al registro
+                } while (generatedProducts.contains(productName)); // Check if the product has already been generated
+                generatedProducts.add(productName); // Add the generated product to the registry
 
                 int productID = generateRandomProductID();
                 double productPrice = generateRandomProductPrice();
@@ -55,8 +55,8 @@ public class GenerateInfoFiles {
             String salesmanLine;
             while ((salesmanLine = salesmanReader.readLine()) != null) {
                 String[] salesmanData = salesmanLine.split(";");
-                String salesmanDocument = salesmanData[0] + "_" + salesmanData[1]; // Tipo y número de documento
-                String salesmanSalesFileName = "SalesmanSales_" + salesmanDocument + ".txt";
+                String salesmanDocument = salesmanData[0] + "_" + salesmanData[1]; // Document type and number
+                String salesmanSalesFileName = "SalesmanSales_" + salesmanDocument + ".txt"; // Individual file per seller
 
                 try (PrintWriter writer = new PrintWriter(salesmanSalesFileName)) {
                     List<String> products = new ArrayList<>();
@@ -64,15 +64,15 @@ public class GenerateInfoFiles {
                         String productLine;
                         while ((productLine = productReader.readLine()) != null) {
                             String[] productData = productLine.split(";");
-                            products.add(productData[0]); // Nombre del producto
+                            products.add(productData[0]); // Product name
                         }
                     }
 
                     Random random = new Random();
-                    int salesCount = random.nextInt(10) + 5; // Entre 5 y 15 ventas por vendedor
+                    int salesCount = random.nextInt(10) + 5; // Between 5 and 15 sales per seller
                     for (int i = 0; i < salesCount; i++) {
                         String productSold = products.get(random.nextInt(products.size()));
-                        int quantitySold = random.nextInt(10) + 1; // Entre 1 y 10 unidades vendidas
+                        int quantitySold = random.nextInt(10) + 1; // Between 1 and 10 units sold
                         writer.println(productSold + ";" + quantitySold);
                     }
                 }
@@ -113,6 +113,6 @@ public class GenerateInfoFiles {
     private static double generateRandomProductPrice() {
         Random random = new Random();
         double price = (random.nextDouble() * 50) + 1; // Generate random price between 1 and 50
-        return Double.parseDouble(String.format("%.2f", price));
+        return Double.parseDouble(String.format("%.2f", price)); //Use only two decimal places
     }
 }

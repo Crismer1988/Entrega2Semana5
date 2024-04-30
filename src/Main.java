@@ -23,15 +23,17 @@ public class Main {
         File folder = new File(".");
         File[] files = folder.listFiles((dir, name) -> name.startsWith("SalesmanSales_") && name.endsWith(".txt"));
 
+        assert files != null;
         for (File file : files) {
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     String[] parts = line.split(";");
-                    String salesmanInfo = file.getName().replace("SalesmanSales_", "").replace(".txt", ""); // Obtener el tipo y número de documento del vendedor
+                    // Obtain each seller's ID type and ID number
+                    String salesmanInfo = file.getName().replace("SalesmanSales_", "").replace(".txt", "");
                     double totalSales = salesBySalesman.getOrDefault(salesmanInfo, 0.0);
                     if (parts.length > 1) {
-                        totalSales += Double.parseDouble(parts[1]); // Add sales for this seller
+                        totalSales += Double.parseDouble(parts[1]); // Add sales for each seller
                     }
                     salesBySalesman.put(salesmanInfo, totalSales);
                 }
@@ -55,6 +57,7 @@ public class Main {
         File folder = new File(".");
         File[] files = folder.listFiles((dir, name) -> name.startsWith("SalesmanSales_") && name.endsWith(".txt"));
 
+        assert files != null;
         for (File file : files) {
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 String line;
